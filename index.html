@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>I Love U Mommy ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #ff99cc, #ff66b2);
+            text-align: center;
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 50px;
+            text-shadow: 0 0 10px white;
+            animation: glow 2s infinite alternate;
+        }
+
+        @keyframes glow {
+            0% { text-shadow: 0 0 10px white; }
+            100% { text-shadow: 0 0 20px pink; }
+        }
+
+        .container {
+            position: relative;
+            margin-top: 10%;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            transform: rotate(-45deg);
+            animation: float 5s infinite;
+        }
+
+        .heart:before,
+        .heart:after {
+            content: "";
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+        }
+
+        .heart:before {
+            top: -10px;
+            left: 0;
+        }
+
+        .heart:after {
+            left: 10px;
+            top: 0;
+        }
+
+        @keyframes float {
+            0% { transform: translateY(0) rotate(-45deg); opacity: 1; }
+            100% { transform: translateY(-100vh) rotate(-45deg); opacity: 0; }
+        }
+
+        .hidden-message {
+            display: none;
+            font-size: 24px;
+            margin-top: 20px;
+            background: white;
+            color: black;
+            padding: 10px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px white;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        .reveal-button {
+            background: white;
+            color: black;
+            font-size: 20px;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+            box-shadow: 0 0 10px pink;
+            transition: transform 0.2s;
+        }
+
+        .reveal-button:hover {
+            background: yellow;
+            transform: scale(1.1);
+        }
+
+        .fireworks {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://media.giphy.com/media/3ohs4nPyGxLL5Ftzkc/giphy.gif') no-repeat center center;
+            background-size: cover;
+        }
+
+        .quote-box {
+            font-size: 24px;
+            margin-top: 30px;
+            font-style: italic;
+            opacity: 0;
+            animation: fadeIn 2s infinite alternate;
+        }
+
+        .stars {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background: white;
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: twinkle 2s infinite alternate;
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 🎵 Background Music (I Wanna Be Yours - Arctic Monkeys) -->
+    <audio id="background-music" loop>
+        <source src="https://voca.ro/1hx2yRFhbg2I" type="audio/mp3">
+    </audio>
+
+    <button onclick="playMusic()" class="reveal-button">▶ Play Music</button>
+
+    <div class="container">
+        <h1>❤️ I Love U Mommy ❤️</h1>
+        <p>Mommy, you are the most special person in my life!</p>
+        
+        <div class="quote-box" id="quote-box">"A mother’s love is endless and unconditional."</div>
+        
+        <button class="reveal-button" onclick="showMessage()">Click to See a Surprise Message</button>
+        <p class="hidden-message" id="message">You are my best friend, my protector, my inspiration. I love you more than words can say! 💖</p>
+
+        <button class="reveal-button" onclick="showGift()">Click for a Special Gift 🎁</button>
+    </div>
+
+    <div class="fireworks" id="fireworks"></div>
+
+    <script>
+        const quotes = [
+            "A mommy's love is endless and unconditional.",
+            "Mommy, you are my superhero, my rock, my inspiration.",
+            "A mommy's hug lasts long after she lets go.",
+            "To the world, you are a pretty mommy. To me, you are the sexyy hottest world.",
+            "A mommy's love is like no other – strong, pure, and forever."
+        ];
+
+        function showMessage() {
+            document.getElementById("message").style.display = "block";
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.className = "heart";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }
+
+        setInterval(createHeart, 300);
+
+        function createStar() {
+            const star = document.createElement("div");
+            star.className = "stars";
+            star.style.left = Math.random() * 100 + "vw";
+            star.style.top = Math.random() * 100 + "vh";
+            star.style.animationDuration = Math.random() * 3 + 2 + "s";
+            document.body.appendChild(star);
+            setTimeout(() => star.remove(), 5000);
+        }
+
+        setInterval(createStar, 500);
+
+        function showGift() {
+            document.getElementById("fireworks").style.display = "block";
+            setTimeout(() => {
+                document.getElementById("fireworks").style.display = "none";
+            }, 5000);
+        }
+
+        function playMusic() {
+            document.getElementById("background-music").play();
+        }
+
+        function changeQuote() {
+            let quoteBox = document.getElementById("quote-box");
+            let randomQuote = quotes[Math.floor(Math.random() * quotes.length)];
+            quoteBox.innerText = randomQuote;
+        }
+
+        setInterval(changeQuote, 5000);
+    </script>
+
+</body>
+</html>
